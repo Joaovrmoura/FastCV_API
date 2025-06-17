@@ -1,0 +1,50 @@
+###
+@baseurl = http://localhost:3060
+
+### GET ALL
+GET {{baseurl}}/api/products
+
+### GET ONE
+GET {{baseurl}}/api/products/68478ebf0b49b0e6a5f71be4
+
+### UPDATE ONE
+PUT {{baseurl}}/api/products/68478ebf0b49b0e6a5f71be4
+Content-Type: application/json
+
+{
+  "name": "Teclado Gamer mance V3"
+}
+
+###
+DELETE  {{baseurl}}/api/products/6850e9db9ba136fdc5ba886c
+
+### CREATE ONE
+POST {{baseurl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Teclado Gamer mance V5",
+  "quantity": 10,
+  "price": 299.99,
+  "image": "http://exemplo.com/mouse.jpg"
+}
+
+### USER
+POST {{baseurl}}/users/register
+Content-Type: application/json
+
+{
+  "username": "joaoa 123",
+  "email": "joao123@gmail.com",
+  "password": "joao123"
+}
+
+
+###
+POST {{baseurl}}/users/login
+Content-Type: application/json
+
+{
+  "email": "joao123@gmail.com",
+  "password": "joao123"
+}

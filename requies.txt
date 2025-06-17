@@ -1,0 +1,35 @@
+npm init -y
+
+dentro do package.json
+// executa o node(antes de usar o nodemon)
+criar: server: "node index.js"
+
+npm i express  
+// ver atualizações em tempo real
+
+
+// no terminal npm run dev
+npm i nodemon -D
+// adicionar ao package.json
+"dev": "nodemon index.js"
+
+
+// instalar o mongodb
+npm install mongodb
+
+// instalar 
+npm i mongoose
+
+//string de conexão deve mudar o ""<db_password>" e após mongodb.net/ aqui o nome "collection" que vc coloca no começo
+// SENHA NÃO PODE TER CARACTERES ESPECIAIS!
+mongodb+srv://joaovrmoura:<db_password>@backenddb.5hjdg9f.mongodb.net/node API?retryWrites=true&w=majority&appName=backendDB
+
+// para o .env
+npm install dotenv --save
+
+
+
+// COISAS A MAIS
+
+npm install bcrypt
+npm install express-validator

@@ -1,6 +1,6 @@
 const Product = require('../models/Product.model')
 
- const findAll = async(req, res) =>{
+const findAll = async(req, res) =>{
   try {
     const product = await Product.find({})
         res.status(200).json({"message": product});
@@ -8,6 +8,7 @@ const Product = require('../models/Product.model')
         res.status(400).json({"message": error});
     }
 }
+
 const findOne = async(req, res) => {
     try{
         const {id} = req.params;
@@ -27,7 +28,7 @@ const create = async (req, res) => {
     }
 }
 
-const update =  async(req, res) => {
+const update = async(req, res) => {
     try{
         const {id} = req.params;
         const product = await Product.findByIdAndUpdate(id, req.body);

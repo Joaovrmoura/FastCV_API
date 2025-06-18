@@ -151,7 +151,7 @@
         <div id="resume"></div>
 
     </div>
-        <!-- html2canvas primeiro -->
+    <!-- html2canvas primeiro -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- Inicializador -->
     <script>
@@ -159,7 +159,6 @@
     </script>
     <!-- jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
     <script>
         // Dados do currículo em JSON
         const resumeData = {
@@ -237,86 +236,97 @@
                 return data.map((item) => item).join('-')
             }
             resumeElement.innerHTML = `
-                <div class="section">
-                    <h2 class="section-title">Dados Pessoais</h2>
-                    <p style="margin: 5px 0;"><strong>Nome:</strong> ${data.dados_pessoais.nome}</p>
-                    <p style="margin: 5px 0;"><strong>Localização:</strong> ${data.dados_pessoais.localizacao}</p>
-                    <p style="margin: 5px 0;"><strong>Telefone:</strong> ${data.dados_pessoais.telefone}</p>
-                    <p style="margin: 5px 0;"><strong>Email:</strong> ${data.dados_pessoais.email}</p>
-                    <p style="margin: 5px 0;"><strong>GitHub:</strong> ${data.dados_pessoais.github}</p>
-                    <p style="margin: 5px 0;"><strong>LinkedIn:</strong> ${data.dados_pessoais.linkedin}</p>
+                <div class="resume-template" style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 30px 40px; background: white; border: 1px solid #eaeaea;">
+    <!-- Cabeçalho minimalista -->
+    <header style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+        <h1 style="margin: 0 0 5px 0; font-size: 32px; letter-spacing: -0.5px;">${data.dados_pessoais.nome}</h1>
+        <div style="color: #666; margin-bottom: 15px;">
+            ${data.dados_pessoais.localizacao} | ${data.dados_pessoais.telefone} | ${data.dados_pessoais.email}
+        </div>
+        <div>
+            <a href="https://${data.dados_pessoais.github}" style="color: #333; text-decoration: none; margin: 0 10px;">GitHub</a> • 
+            <a href="https://${data.dados_pessoais.linkedin}" style="color: #333; text-decoration: none; margin: 0 10px;">LinkedIn</a>
+        </div>
+    </header>
+
+    <!-- Objetivo -->
+    <section style="margin-bottom: 30px;">
+        <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Objetivo Profissional</h2>
+        <p style="line-height: 1.6; margin: 0; color: #333;">${data.objetivo}</p>
+    </section>
+
+    <!-- Grid de 2 colunas -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+        <!-- Coluna 1 -->
+        <div>
+            <!-- Formação -->
+            <section style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Formação</h2>
+                <p style="margin: 0 0 5px 0; font-weight: bold;">${data.formacao.curso}</p>
+                <p style="margin: 0 0 3px 0; color: #666;">${data.formacao.instituicao}</p>
+                <p style="margin: 0; color: #888;">${data.formacao.inicio} - ${data.formacao.conclusao} | ${data.formacao.local}</p>
+            </section>
+
+            <!-- Habilidades -->
+            <section style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Habilidades</h2>
+                <div>
+                    <p style="margin: 0 0 8px 0;"><strong>Backend:</strong> ${formatSkills(data.conhecimentos_tecnicos.backend)}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Frontend:</strong> ${formatSkills(data.conhecimentos_tecnicos.frontend)}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Banco de Dados:</strong> ${formatSkills(data.conhecimentos_tecnicos.banco_de_dados)}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>API:</strong> ${formatSkills(data.conhecimentos_tecnicos.api)}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Outros:</strong> ${formatSkills(data.conhecimentos_tecnicos.outros)}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Metodologias:</strong> ${formatSkills(data.conhecimentos_tecnicos.metodologias)}</p>
                 </div>
+            </section>
 
-                <div class="section-divider"></div>
-                <div class="section-divider"></div>
-              
-                <div class="section">
-                    <h2 class="section-title">Objetivo Profissional</h2>
-                    <p>${data.objetivo}</p>
-                </div>
+            <!-- Idiomas -->
+            <section>
+                <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Idiomas</h2>
+                <p style="margin: 0 0 5px 0;"><strong>Português:</strong> ${data.idiomas.portugues}</p>
+                <p style="margin: 0;"><strong>Inglês:</strong> ${data.idiomas.ingles}</p>
+            </section>
+        </div>
 
-                <div class="section-divider"></div>
-
-                <div class="section">
-                    <h2 class="section-title">Formação Acadêmica</h2>
-                    <p style="margin: 8px 0;"><strong>${data.formacao.curso}</strong></p>
-                    <p style="margin: 5px 0;">${data.formacao.instituicao}, ${data.formacao.local}</p>
-                    <p style="margin: 5px 0;"> ${data.formacao.inicio} - ${data.formacao.conclusao}</p>
-                   
-                </div>
-
-                <div class="section-divider"></div>
-                <div class="section-divider"></div>
-
-                <div class="section">
-                    <h2 class="section-title">Habilidades Técnicas</h2>
-                    <ul class="skills-list">
-                        <li><strong>Backend:</strong> ${formatSkills(data.conhecimentos_tecnicos.backend)}</li>
-                        <li><strong>Frontend:</strong> ${formatSkills(data.conhecimentos_tecnicos.frontend)}</li>
-                        <li><strong>Banco de Dados:</strong> ${formatSkills(data.conhecimentos_tecnicos.banco_de_dados)}</li>
-                        <li><strong>API:</strong> ${formatSkills(data.conhecimentos_tecnicos.api)}</li>
-                        <li><strong>Outros:</strong> ${formatSkills(data.conhecimentos_tecnicos.outros)}</li>
-                        <li><strong>Metodologias:</strong> ${formatSkills(data.conhecimentos_tecnicos.metodologias)}</li>
-                    </ul>
-                </div>
-                <div class="section-divider"></div>
-                <div class="section">
-                    <h2 class="section-title">Experiências Profissionais</h2>
-                    ${data.experiencia_profissional.map(projeto => `
-                        <div class="project-item">
-                            <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom:10px;">
-                                <h3 style="margin: 0; font-weight: bold;">${projeto.nome}</h3>
-                                <span style="color: #7f8c8d;">${formatData(projeto.data)}</span>
-                            </div>
-                            <p>${projeto.descricao}</p>
-                            <p>GitHub: <a href="https://${projeto.github}" class="project-link" target="_blank">${projeto.github}</a></p>
-                            ${projeto.detalhes ? `
-                                <ul>
-                                    ${projeto.detalhes.map(detalhe => `<li>${detalhe}</li>`).join('')}
-                                </ul>
-                            ` : ''}
+        <!-- Coluna 2 -->
+        <div>
+            <!-- Experiência -->
+            <section style="margin-bottom: 30px;">
+                <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Experiência</h2>
+                ${data.experiencia_profissional.map(projeto => `
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <h3 style="margin: 0 0 5px 0; font-size: 16px;">${projeto.nome}</h3>
+                            <span style="color: #888; font-size: 14px;">${formatData(projeto.data)}</span>
                         </div>
-                    `).join('')}
-                </div>
-                <div class="section-divider"></div>
-                <div class="section">
-                    <h2 class="section-title">Cursos Complementares</h2>
-                    <ul class="skills-list">
-                        ${data.cursos_extras.map(curso => `
-                            <li><strong>${curso.titulo}</strong> - ${curso.plataforma} (${curso.carga_horaria})</li>
-                        `).join('')}
-                    </ul>
-                </div>
-                
-                <div class="section-divider"></div>
-                <div class="section">
-                    <h2 class="section-title">Idiomas</h2>
-                    <ul class="skills-list">
-                        <li><strong>Português:</strong> ${data.idiomas.portugues}</li>
-                        <li><strong>Inglês:</strong> ${data.idiomas.ingles}</li>
-                    </ul>
-                </div>
-            `;
+                        <p style="margin: 0 0 8px 0; color: #666; font-style: italic;">${projeto.descricao}</p>
+                        <p style="margin: 0 0 8px 0; font-size: 14px;">
+                            <a href="https://${projeto.github}" style="color: #333; text-decoration: none;">${projeto.github}</a>
+                        </p>
+                        ${projeto.detalhes ? `
+                            <ul style="padding-left: 20px; margin: 10px 0 0 0;">
+                                ${projeto.detalhes.map(detalhe => `<li style="margin-bottom: 4px; font-size: 14px;">${detalhe}</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    </div>
+                `).join('')}
+            </section>
+
+            <!-- Cursos -->
+            <section>
+                <h2 style="font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 15px 0; color: #444;">Cursos</h2>
+                ${data.cursos_extras.map(curso => `
+                    <div style="margin-bottom: 12px;">
+                        <strong>${curso.titulo}</strong>
+                        <div style="font-size: 14px; color: #666;">
+                            ${curso.plataforma} • ${curso.carga_horaria}
+                        </div>
+                    </div>
+                `).join('')}
+            </section>
+        </div>
+    </div>
+</div> `;
         }
 
         function generatePDF() {

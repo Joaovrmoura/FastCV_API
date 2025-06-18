@@ -6,9 +6,7 @@ const {
   update, 
   remove,
 } = require('../controllers/Product.controller');
-const { query } = require('express-validator');
 const router = express.Router();
-require('express-validator');
 
 //find all
 router.get('/api/products', findAll);

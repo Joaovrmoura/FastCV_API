@@ -6,7 +6,7 @@ import requiredRole from '../middlewares/roleRequired.js';
 
 // router.use(requiredLogin)
 router.use(requiredRole(['admin']))
-
+router.use(requiredLogin)
 //find all
 router.get('/api/products', ProductController.findAll);
  

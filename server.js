@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // use router
-app.use('/', productRoute)
+app.use('/api', productRoute)
 app.use('/auth', authRoute)
 app.use('/api', resumeRoute)
 

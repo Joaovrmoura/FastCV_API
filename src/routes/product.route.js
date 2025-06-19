@@ -4,22 +4,22 @@ import ProductController from '../controllers/Product.controller.js';
 import requiredLogin from '../middlewares/tokenRequired.js';
 import requiredRole from '../middlewares/roleRequired.js';
 
-// router.use(requiredLogin)
-router.use(requiredRole(['admin']))
+// token access required
 router.use(requiredLogin)
+
 //find all
-router.get('/api/products', ProductController.findAll);
+router.get('/products', requiredRole(['admin']), ProductController.findAll);
  
 // find One by ID
-router.get('/api/products/:id', ProductController.findOne);
+router.get('/products/:id', requiredRole(['admin']), ProductController.findOne);
 
 // create a new product
-router.post('/api/products', ProductController.create);
+router.post('/products', requiredRole(['admin']), ProductController.create);
 
 // update product
-router.put('/api/products/:id', ProductController.update);
+router.put('/products/:id', requiredRole(['admin']), ProductController.update);
 
 // delete product
-router.delete('/api/products/:id', ProductController.remove);
+router.delete('/products/:id', requiredRole(['admin']), ProductController.remove);
 
 export default router;

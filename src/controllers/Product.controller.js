@@ -1,8 +1,8 @@
-const Product = require('../models/Product.model')
+import Product from '../models/Product.model.js';
 
 const findAll = async(req, res) =>{
   try {
-    const product = await Product.find({})
+     const product = await Product.find({})
         res.status(200).json({"message": product});
     }catch(error){
         res.status(400).json({"message": error});
@@ -20,7 +20,7 @@ const findOne = async(req, res) => {
 }
 
 const create = async (req, res) => {
-    try{
+     try{
         const product = await Product.create(req.body);
         res.status(200).json({"message": product});
     }catch(error){
@@ -49,18 +49,18 @@ const update = async(req, res) => {
 const remove = async(req, res) => {
     try {
         const {id} = req.params;
-        const delelteProduct = await Product.findByIdAndDelete(id)
+        const delelteProduct = await Product.findByIdAndDelete(id);
 
         if (!delelteProduct) {
-            return res.status(404).json({message: "Not found"})
+            return res.status(404).json({message: "Not found"});
         }
         res.status(200).json({"message": "Product Delete with successFully"});
     } catch (error) {
-        res.status(400).json({"message": error})
+        res.status(400).json({"message": error});
     }
 }
 
-module.exports = {
+export default {
     findAll, 
     findOne, 
     create, 

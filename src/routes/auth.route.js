@@ -1,12 +1,13 @@
-const router = require('express').Router()
-const UserController = require('../controllers/User.controller')
-const {validateAccess} = require('../validators/user.validator')
-const {validateRequest} = require('../middlewares/validateRequest');
+import express from 'express';
+const router = express.Router();
+import AuthController from '../controllers/Auth.controller.js';
+import {validateAccess} from '../validators/auth.validator.js';
+import {validateRequest} from '../middlewares/validateRequest.js';
 
 router.use(validateAccess)
 router.use(validateRequest)
 
-router.post('/users', UserController.register);
-router.post('/login', UserController.login)
+router.post('/register', AuthController.register);
+router.post('/login', AuthController.login)
 
-module.exports = router
+export default router;

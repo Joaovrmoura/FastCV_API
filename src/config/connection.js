@@ -1,22 +1,23 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
+dotenv.config();
 
-class Connection {
-    static #connect = null
+// singleton db connection
+let connection = null;
 
-    static async connect(){
-        if(Connection.#connect === null){
-            try {
-                const conn = await mongoose.connect(process.env.CONNECTSTRING)
-                console.log('Connected to mongoDB');
-                Connection.#connect = conn; 
-            }catch(error){
-                console.error(error);
-                throw error
-            }
-        }
-        return Connection.#connect;
-    }
+async function connect() {
+  if (connection) {
+    return connection;
+  }
+
+  try {
+    connection = await mongoose.connect(process.env.CONNECTSTRING);
+    console.log('Connected to mongoDB');
+    return connection;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-module.exports = Connection
+export default { connect };

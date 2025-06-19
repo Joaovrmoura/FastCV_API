@@ -1,12 +1,13 @@
 ###
 @baseurl = http://localhost:3060
 
+
 ### user REST api
-POST {{baseurl}}/auth/users
+POST {{baseurl}}/auth/register
 Content-Type: application/json
 
 {
-  "email": "userTeste3@gmail.com",
+  "email": "userTeste6@gmail.com",
   "password": "Joao123"
 }
 
@@ -16,84 +17,182 @@ POST {{baseurl}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "userTeste3@gmail.com",
+  "email": "userteste3@gmail.com",
   "password": "Joao123"
 }
 
-
 ###
-POST {{baseurl}}/resumes
+DELETE {{baseurl}}/api/resumes/68534b4a48d0bc2768b956b3
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNjQ5NDgsImV4cCI6MTc1MDM2NTU0OH0.yxiDYAiyHw2MmZnLGgxtftp2tOT3sFfcxRx12tfvz80
 
-{
-    
-  "user": "6852db41bc2421a778edb8cd",
 
-  "template_selected": "moderno",
+### get all resumes 
+GET {{baseurl}}/api/resumes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNzE5MDUsImV4cCI6MTc1MDM3MjUwNX0.tU0CHg-8ygNw5bimA8s6SBw1OmJM9s-dh7LH7vUeRfQ
 
-  "personal_data": {
-    "nome": "Gabriel Souza da Silva",
-    "localizacao": "São Paulo - SP",
-    "telefone": "(11) 98765-4321",
-    "email": "gabriel.dev@gmail.com",
-    "github": "https://github.com/gabrielsouza-dev",
-    "linkedin": "https://linkedin.com/in/gabrielsouzadev"
-  },
+
+### get one
+GET {{baseurl}}/api/resumes/68534c8e72175e42dea742bf
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNzE5MDUsImV4cCI6MTc1MDM3MjUwNX0.tU0CHg-8ygNw5bimA8s6SBw1OmJM9s-dh7LH7vUeRfQ
+
+# ###
+# POST {{baseurl}}/api/resumes
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJUZXN0ZTNAZ21haWwuY29tIiwiaWF0IjoxNzUwMjk5Mjc3LCJleHAiOjE3NTAyOTk1Nzd9.wwqP0dKBsRNR5Wsk0r4XtHmMDcKJAJCVTMJMmcMCOZI
+
+
+# PUT {{baseurl}}/api/resumes/6854534fe76ba884882abad9
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwiaWF0IjoxNzUwMzU2Nzc4LCJleHAiOjE3NTAzNTczNzh9.aEXwrAgKOVHGEiDSBvBSSu_FStR1nNI3KOcVatb_EPk
+
+
+# {
+#   "user": "68537646ec4a38bdc1b45f9e",
+
+#   "template_selected": "moderno",
+
+#   "personal_data": {
+#     "name": "CURRICULO EDITADO",
+#     "localizacao": "São Paulo - SP",
+#     "telefone": "(11) 98765-4321",
+#     "email": "gabriel.dev@gmail.com",
+#     "github": "https://github.com/gabrielsouza-dev",
+#     "linkedin": "https://linkedin.com/in/gabrielsouzadev"
+#   },
  
 
-  "objective": "Conseguir uma oportunidade de estágio como desenvolvedor backend com foco em NestJS, contribuindo com meus conhecimentos e aprendendo com uma equipe experiente de tecnologia.",
+#   "objective": "Conseguir uma oportunidade de estágio como desenvolvedor backend com foco em NestJS, contribuindo com meus conhecimentos e aprendendo com uma equipe experiente de tecnologia.",
 
-  "education": [
-    {
-      "course": "Análise e Desenvolvimento de Sistemas",
-      "institution": "Faculdade de Tecnologia FIAP",
-      "location": "São Paulo/SP",
-      "start_data": "Fev/2024",
-      "end_data": "Dez/2025"
-    }
-  ],
+#   "education": [
+#     {
+#       "course": "Análise e Desenvolvimento de Sistemas",
+#       "institution": "Faculdade de Tecnologia FIAP",
+#       "location": "São Paulo/SP",
+#       "start_data": "Fev/2024",
+#       "end_data": "Dez/2025"
+#     }
+#   ],
   
-  "technical_skills": [
-    { 
-      "name": "backend",
-      "skills" : [ "nodejs","java", "Golang" ]
-    }
-  ],
+#   "technical_skills": [
+#     { 
+#       "name": "backend",
+#       "skills" : [ "nodejs","java", "Golang" ]
+#     }
+#   ],
 
-  "professional_experience": [
-    {
-      "name": "Sistema de Gerenciamento de Tarefas com NestJS ",
-      "period": ["jan/2023", "dez/2024"],
-      "github": "https://github.com/gabrielsouza-dev/task-api",
-      "description": "API RESTful feita em NestJS para criar, listar, atualizar e deletar tarefas.",
-      "details": [
-        "Utiliza PostgreSQL, autenticação com JWT e documentação Swagger.",
-        "Estruturado com princípios SOLID, DTOs e Repositórios."
-      ]
-    },
-    {
-      "name": "API de Cursos Online",
-      "period": ["jan/2023", "dez/2024"],
-      "github": "https://github.com/gabrielsouza-dev/course-api",
-      "description": "Backend completo em NestJS simulando uma plataforma de cursos com usuários, categorias e autenticação.",
-      "details": [
-        "Banco de dados relacional com TypeORM e migrações."
-      ]
-    }
-  ],
+#   "professional_experience": [
+#     {
+#       "name": "Sistema de Gerenciamento de Tarefas com NestJS ",
+#       "period": ["jan/2023", "dez/2024"],
+#       "github": "https://github.com/gabrielsouza-dev/task-api",
+#       "description": "API RESTful feita em NestJS para criar, listar, atualizar e deletar tarefas.",
+#       "details": [
+#         "Utiliza PostgreSQL, autenticação com JWT e documentação Swagger.",
+#         "Estruturado com princípios SOLID, DTOs e Repositórios."
+#       ]
+#     },
+#     {
+#       "name": "API de Cursos Online",
+#       "period": ["jan/2023", "dez/2024"],
+#       "github": "https://github.com/gabrielsouza-dev/course-api",
+#       "description": "Backend completo em NestJS simulando uma plataforma de cursos com usuários, categorias e autenticação.",
+#       "details": [
+#         "Banco de dados relacional com TypeORM e migrações."
+#       ]
+#     }
+#   ],
 
-  "additional_courses": [
-    { "name": "NestJS Fundamentals", "platform": "Udemy", "duration": "20h" },
-    { "name": "Backend com Node.js e TypeScript", "platform": "Alura", "duration": "18h" },
-    { "name": "Git e GitHub para Iniciantes", "platform": "Rocketseat", "duration": "6h" },
-    { "name": "Docker para Desenvolvedores", "platform": "Code.education", "duration": "12h" }
-  ],
+#   "additional_courses": [
+#     { "name": "NestJS Fundamentals", "platform": "Udemy", "duration": "20h" },
+#     { "name": "Backend com Node.js e TypeScript", "platform": "Alura", "duration": "18h" },
+#     { "name": "Git e GitHub para Iniciantes", "platform": "Rocketseat", "duration": "6h" },
+#     { "name": "Docker para Desenvolvedores", "platform": "Code.education", "duration": "12h" }
+#   ],
 
-  "languages": [
-    { "name": "Português", "level": "basico" },
-    { "name": "Inglês", "level": "intermediario" }
-  ]
-}
+#   "languages": [
+#     { "name": "Português", "level": "basico" },
+#     { "name": "Inglês", "level": "intermediario" }
+#   ]
+# }
+
+
+
+# ###
+# POST {{baseurl}}/api/resumes/
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwiaWF0IjoxNzUwMzU2Nzc4LCJleHAiOjE3NTAzNTczNzh9.aEXwrAgKOVHGEiDSBvBSSu_FStR1nNI3KOcVatb_EPk
+
+# {
+#   "user": "68537646ec4a38bdc1b45f9e",
+
+#   "template_selected": "moderno",
+
+#   "personal_data": {
+#     "name": "CURRICULO EDITADO",
+#     "localizacao": "São Paulo - SP",
+#     "telefone": "(11) 98765-4321",
+#     "email": "gabriel.dev@gmail.com",
+#     "github": "https://github.com/gabrielsouza-dev",
+#     "linkedin": "https://linkedin.com/in/gabrielsouzadev"
+#   },
+ 
+
+#   "objective": "Conseguir uma oportunidade de estágio como desenvolvedor backend com foco em NestJS, contribuindo com meus conhecimentos e aprendendo com uma equipe experiente de tecnologia.",
+
+#   "education": [
+#     {
+#       "course": "Análise e Desenvolvimento de Sistemas",
+#       "institution": "Faculdade de Tecnologia FIAP",
+#       "location": "São Paulo/SP",
+#       "start_data": "Fev/2024",
+#       "end_data": "Dez/2025"
+#     }
+#   ],
+  
+#   "technical_skills": [
+#     { 
+#       "name": "backend",
+#       "skills" : [ "nodejs","java", "Golang" ]
+#     }
+#   ],
+
+#   "professional_experience": [
+#     {
+#       "name": "Sistema de Gerenciamento de Tarefas com NestJS ",
+#       "period": ["jan/2023", "dez/2024"],
+#       "github": "https://github.com/gabrielsouza-dev/task-api",
+#       "description": "API RESTful feita em NestJS para criar, listar, atualizar e deletar tarefas.",
+#       "details": [
+#         "Utiliza PostgreSQL, autenticação com JWT e documentação Swagger.",
+#         "Estruturado com princípios SOLID, DTOs e Repositórios."
+#       ]
+#     },
+#     {
+#       "name": "API de Cursos Online",
+#       "period": ["jan/2023", "dez/2024"],
+#       "github": "https://github.com/gabrielsouza-dev/course-api",
+#       "description": "Backend completo em NestJS simulando uma plataforma de cursos com usuários, categorias e autenticação.",
+#       "details": [
+#         "Banco de dados relacional com TypeORM e migrações."
+#       ]
+#     }
+#   ],
+
+#   "additional_courses": [
+#     { "name": "NestJS Fundamentals", "platform": "Udemy", "duration": "20h" },
+#     { "name": "Backend com Node.js e TypeScript", "platform": "Alura", "duration": "18h" },
+#     { "name": "Git e GitHub para Iniciantes", "platform": "Rocketseat", "duration": "6h" },
+#     { "name": "Docker para Desenvolvedores", "platform": "Code.education", "duration": "12h" }
+#   ],
+
+#   "languages": [
+#     { "name": "Português", "level": "basico" },
+#     { "name": "Inglês", "level": "intermediario" }
+#   ]
+# }
 
 
 # ### GET ALL

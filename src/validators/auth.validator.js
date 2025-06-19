@@ -1,4 +1,4 @@
-const { body, query } = require('express-validator')
+import { body } from 'express-validator';
 
 /**
  * Middleware of validation for login and register.
@@ -6,17 +6,14 @@ const { body, query } = require('express-validator')
  * @returns {ValidationChain[]} Array.
 */
 
-const validateAccess = [
+export const validateAccess = [
     body('email')
     .isString()
     .isLength({min: 10, max:255})
-    .withMessage('Enter a valid password')
+    .withMessage('Email inválido')
     .isEmail().withMessage('Email inválido'),
 
     body('password').isLength({min: 6, max: 100})
     .withMessage('Senha deve ter entre 6 e 100 caracteres')
 ]
 
-module.exports = {
-    validateAccess
-}

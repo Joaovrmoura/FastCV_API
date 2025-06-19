@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ResumeSchema = new mongoose.Schema(
   {
@@ -9,14 +9,14 @@ const ResumeSchema = new mongoose.Schema(
       required: false
     },
 
-    template_selected : {
+    template_selected: {
       type: String,
-      enum : ['moderno', 'classico', 'clean', 'colorido', 'corporativo'],
+      enum: ['moderno', 'classico', 'clean', 'colorido', 'corporativo'],
       required: false
     },
 
     personal_data: {
-      name: { type: String, trim: true },
+      name: { type: String },
       location: { type: String },
       phone: { type: String },
       email: { type: String },
@@ -38,8 +38,8 @@ const ResumeSchema = new mongoose.Schema(
 
     technical_skills: [
       {
-        name: {type: String},
-        skills: [ String ]
+        name: { type: String },
+        skills: [String]
       }
     ],
 
@@ -64,11 +64,14 @@ const ResumeSchema = new mongoose.Schema(
     languages: [
       {
         name: { type: String },
-        enum: ['basico', 'intermediario', 'avancado'] 
+        level: {
+          type: String,
+          enum: ['basico', 'intermediario', 'avancado']
+        }
       }
     ]
 
-  }, 
+  },
   {
     timestamps: true
   }
@@ -76,4 +79,4 @@ const ResumeSchema = new mongoose.Schema(
 
 
 const Resume = mongoose.model('Resume', ResumeSchema);
-module.exports = Resume;
+export default Resume;

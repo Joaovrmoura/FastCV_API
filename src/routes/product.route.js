@@ -1,26 +1,25 @@
-const express = require('express')
-const {
-  findAll,
-  findOne, 
-  create, 
-  update, 
-  remove,
-} = require('../controllers/Product.controller');
+import express from 'express';
 const router = express.Router();
+import ProductController from '../controllers/Product.controller.js';
+import requiredLogin from '../middlewares/tokenRequired.js';
+import requiredRole from '../middlewares/roleRequired.js';
+
+// router.use(requiredLogin)
+router.use(requiredRole(['admin']))
 
 //find all
-router.get('/api/products', findAll);
+router.get('/api/products', ProductController.findAll);
  
 // find One by ID
-router.get('/api/products/:id', findOne);
+router.get('/api/products/:id', ProductController.findOne);
 
 // create a new product
-router.post('/api/products', create);
+router.post('/api/products', ProductController.create);
 
 // update product
-router.put('/api/products/:id', update);
+router.put('/api/products/:id', ProductController.update);
 
 // delete product
-router.delete('/api/products/:id', remove);
+router.delete('/api/products/:id', ProductController.remove);
 
-module.exports = router;
+export default router;

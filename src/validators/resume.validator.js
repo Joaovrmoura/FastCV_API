@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+import { body } from 'express-validator';
 
 /**
  * Middleware of validation resume inputs.
@@ -6,7 +6,7 @@ const { body } = require('express-validator');
  * @returns {ValidationChain[]} Array.
 */
 
-const valdateResumeInputs = [
+export const valdateResumeInputs = [
 
   // get and validate mongo_id, for associate an user 
   body('user')
@@ -157,7 +157,6 @@ const valdateResumeInputs = [
 
 
 
-
   body('languages').optional().isArray(),
   body('languages.*.name')
     .optional()
@@ -170,5 +169,3 @@ const valdateResumeInputs = [
     .isIn(['basico', 'intermediario', 'avancado'])
     .withMessage('Level deve ser basico, intermediario ou avancado'),
 ];
-
-module.exports = { valdateResumeInputs };

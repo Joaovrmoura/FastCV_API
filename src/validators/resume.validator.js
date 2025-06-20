@@ -9,7 +9,7 @@ import { body } from 'express-validator';
 export const valdateResumeInputs = [
 
   // get and validate mongo_id, for associate an user 
-  body('user')
+  body('user_id')
    .optional()
    .isMongoId()
    .withMessage('User deve ser um ID Mongo válido'),
@@ -156,6 +156,7 @@ export const valdateResumeInputs = [
     .isLength({ min: 1, max: 30 }),
 
 
+    
 
   body('languages').optional().isArray(),
   body('languages.*.name')

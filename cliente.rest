@@ -2,7 +2,23 @@
 @baseurl = http://localhost:3060
 
 
-### user REST api
+### get one user
+GET {{baseurl}}/api/users/6852db41bc2421a778edb8cd
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUwNDU3MjI2LCJleHAiOjE3NTA0NTkwMjZ9.6CqST2VjceW2h371RfN91zwO3QEEkQSiaPNED0sJjV0
+
+### getAll suers
+GET {{baseurl}}/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUwNDU3MjI2LCJleHAiOjE3NTA0NTkwMjZ9.6CqST2VjceW2h371RfN91zwO3QEEkQSiaPNED0sJjV0
+
+### delete on user
+DELETE {{baseurl}}/api/users/6852da4806e19d5e49bb6f33
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTA0NTcwODcsImV4cCI6MTc1MDQ1ODg4N30.ujVQQfjDfhKuYk8g7GQNiraY0o_xBpnR3__qPK97cHc
+
+
+### register
 POST {{baseurl}}/auth/register
 Content-Type: application/json
 
@@ -13,30 +29,42 @@ Content-Type: application/json
 
 
 ### login
-POST {{baseurl}}/auth/login
+POST {{baseurl}}/auths/login
 Content-Type: application/json
 
 {
-  "email": "userteste3@gmail.com",
+  "email": "userteste6@gmail.com",
   "password": "Joao123"
 }
 
-###
-DELETE {{baseurl}}/api/resumes/68534b4a48d0bc2768b956b3
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNjQ5NDgsImV4cCI6MTc1MDM2NTU0OH0.yxiDYAiyHw2MmZnLGgxtftp2tOT3sFfcxRx12tfvz80
 
+###
+DELETE {{baseurl}}/api/resumes/68534c0022fbe4b0113cca74
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUwNDUzOTMwLCJleHAiOjE3NTA0NTU3MzB9.x-Z1xQma9XLD1foZfSx5VpJS_Swba1YyqBRaMocNb-w
 
 ### get all resumes 
 GET {{baseurl}}/api/resumes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNzE5MDUsImV4cCI6MTc1MDM3MjUwNX0.tU0CHg-8ygNw5bimA8s6SBw1OmJM9s-dh7LH7vUeRfQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0NmVjNGEzOGJkYzFiNDVmOWUiLCJlbWFpbCI6InVzZXJ0ZXN0ZTZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUwNDUzOTMwLCJleHAiOjE3NTA0NTU3MzB9.x-Z1xQma9XLD1foZfSx5VpJS_Swba1YyqBRaMocNb-w
 
 
 ### get one
 GET {{baseurl}}/api/resumes/68534c8e72175e42dea742bf
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUyZGI0MWJjMjQyMWE3NzhlZGI4Y2QiLCJlbWFpbCI6InVzZXJ0ZXN0ZTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTAzNzE5MDUsImV4cCI6MTc1MDM3MjUwNX0.tU0CHg-8ygNw5bimA8s6SBw1OmJM9s-dh7LH7vUeRfQ
+
+
+###
+# POST {{baseurl}}/chatapi/ask
+# Content-Type: application/json
+# Authorization: Bearer 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
+# HTTP-Referer: https://seusite.com
+# X-Title: MeuAppIA
+
+# {
+#   "prompt": "como tankar a vida?"
+# }
 
 # ###
 # POST {{baseurl}}/api/resumes

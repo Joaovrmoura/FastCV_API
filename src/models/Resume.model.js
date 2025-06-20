@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const ResumeSchema = new mongoose.Schema(
   {
     // Reference to the user who owns the curriculum (optional)
-    user: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: false

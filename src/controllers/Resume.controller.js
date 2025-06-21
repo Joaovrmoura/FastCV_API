@@ -8,8 +8,8 @@ class ResumeController {
 
             if (!findResume) {
                 return res.status(402).json({ "success": false, "message": "Nenhum currículo encontrado" })
-            }f
-
+            }
+            
             return res.status(201).json({ "success": true, "data": findResume })
 
         } catch (error) {

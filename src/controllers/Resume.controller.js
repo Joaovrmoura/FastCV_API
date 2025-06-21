@@ -19,13 +19,13 @@ class ResumeController {
     }
 
     async findOne(req, res) {
+    
         try {
             const { id } = req.params;
 
             if (!id) {
                 return res.status(400).json({ "success": false, "message": "Operação inválida" })
             }
-
             const resume = await ResumeModel.findById(id);
 
             if (!resume) {
@@ -33,7 +33,8 @@ class ResumeController {
             }
             // if user logged is difirent than resume user_id reference the request is abort
             // req.userId = user with verified token
-            if (resume.user.toString() != req.userId) {
+            
+            if (resume.user_id.toString() !== req.userId && req.userRole !== 'admin') {
                 return res.status(402).json({ "success": false, "message": "Currículo não acessível" })
             }
 

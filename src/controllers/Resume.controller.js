@@ -4,13 +4,23 @@ class ResumeController {
 
     async findAll(req, res) {
         try {
-            const findResume = await ResumeModel.find({})
+            const userId = req.userId; 
+            const userRole = req.userRole;
 
-            if (!findResume) {
+            if (!userId ) {
+                return res.status(400).json({ "success": false, "message": "Operação inválida" })
+            }  
+            const resumes = await ResumeModel.find({ user_id: userId }, '_id template_selected createdAt');
+            
+            if (!resumes) {
                 return res.status(402).json({ "success": false, "message": "Nenhum currículo encontrado" })
             }
+
+            if(resumes[0]._id.toString() !== userId && userRole !== 'admin'){
+                return res.status(402).json({ "success": false, "message": "Currículo não acessível" })
+            }
             
-            return res.status(201).json({ "success": true, "data": findResume })
+            return res.status(201).json({ "success": true, "data": resumes })
 
         } catch (error) {
             console.error(error)
@@ -62,7 +72,7 @@ class ResumeController {
             }
             // if user logged is difirent than resume user_id reference the request is abort
             // req.userId = user with verified token
-            if (resume.user.toString() != req.userId) {
+            if (resume.user_id.toString() != req.userId) {
                 return res.status(402).json({ "success": false, "message": "Currículo não disponível" })
             }
 
@@ -105,10 +115,19 @@ class ResumeController {
     async create(req, res) {
         try {
             const data = req.body
+            const userId = req.userId;
 
-            if (!data) {
+            if (!data || !userId) {
                 return res.status(400).json({ "success": false, "message": "nenhum dado enviado" })
             }
+
+            // Verify if  user has more 5 resumes
+            const resumes = await ResumeModel.find({ user_id: userId });
+
+            if(resumes.length >= 5) {
+                return res.status(403).json({success: false,message: "Limite de currículos atingido. Exclua um currículo antes de criar outro."});
+        }
+
             const salveResume = await ResumeModel.create(data);
 
             if (!salveResume) {

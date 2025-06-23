@@ -25,18 +25,18 @@ export const valdateResumeInputs = [
   body('personal_data.name')
     .optional()
     .isString()
-    .isLength({ min: 3, max: 255 })
+    .isLength({ max: 255 })
     .withMessage('Nome é muito curto ou longo demais'),
 
   body('personal_data.location')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 255 }),
+    .isLength({ max: 255 }),
 
   body('personal_data.phone')
     .optional()
     .isString()
-    .isLength({ min: 8, max: 20 }),
+    .isLength({ max: 20 }),
 
   body('personal_data.email')
     .optional()
@@ -46,19 +46,19 @@ export const valdateResumeInputs = [
   body('personal_data.github')
     .optional()
     .isString()
-    .isLength({min: 3, max: 50})
+    .isLength({max: 50})
     .withMessage('Entrada inválida!'),
 
   body('personal_data.linkedin')
     .optional()
     .isString()
-    .isLength({min: 3, max: 50})
+    .isLength({max: 50})
     .withMessage('Entrada inválida!'),
 
   body('objective')
     .optional()
     .isString()
-    .isLength({ min: 10, max: 500 })
+    .isLength({  max: 700 })
     .withMessage('Objetivo deve ter entre 10 e 500 caracteres'),
 
 
@@ -69,23 +69,23 @@ export const valdateResumeInputs = [
   body('education.*.course')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 50 }),
+    .isLength({ max: 50 }),
   body('education.*.institution')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 100 }),
+    .isLength({ max: 100 }),
   body('education.*.location')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 100 }),
+    .isLength({  max: 100 }),
   body('education.*.start_data')
     .optional()
     .isString()
-    .isLength({ min: 4, max: 21 }),
+    .isLength({ max: 21 }),
   body('education.*.end_data')
     .optional()
     .isString()
-    .isLength({ min: 4, max: 21 }),
+    .isLength({ max: 21 }),
  
 
 
@@ -94,14 +94,14 @@ export const valdateResumeInputs = [
 
   body('technical_skills.*.name').optional()
     .isString().withMessage('Cada categoria deve ter um nome')
-    .isLength({ min: 2, max: 30 }),
+    .isLength({ max: 30 }),
 
   body('technical_skills.*.skills').optional()
     .isArray().withMessage('Cada categoria deve ter um array de skills'),
 
   body('technical_skills.*.skills.*').optional()
     .isString().withMessage('Cada skill deve ser uma string')
-    .isLength({ min: 2, max: 30 }),
+    .isLength({  max: 30 }),
 
 
 
@@ -110,30 +110,30 @@ export const valdateResumeInputs = [
   body('professional_experience.*.name')
     .optional()
     .isString()
-    .isLength({ min: 3, max: 150 }),
+    .isLength({ max: 150 }),
 
   body('professional_experience.*.period').optional().isArray(),
   body('professional_experience.*.period.*')
     .optional()
     .isString()
-    .isLength({ min: 4, max: 50 }),
+    .isLength({ max: 50 }),
 
   body('professional_experience.*.github')
     .optional()
     .isString()
-    .isLength({min: 10, max: 100})
+    .isLength({ max: 100})
     .withMessage('Entrada inválida!'),
 
   body('professional_experience.*.description')
     .optional()
     .isString()
-    .isLength({ min: 10, max: 500 }),
+    .isLength({  max: 500 }),
 
   body('professional_experience.*.details').optional().isArray(),
   body('professional_experience.*.details.*')
     .optional()
     .isString()
-    .isLength({ min: 4, max: 200 }),
+    .isLength({ max: 200 }),
 
 
 
@@ -143,17 +143,17 @@ export const valdateResumeInputs = [
   body('additional_courses.*.name')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 50 }),
+    .isLength({ max: 50 }),
 
   body('additional_courses.*.platform')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 70 }),
+    .isLength({ max: 70 }),
 
   body('additional_courses.*.duration')
     .optional()
     .isString()
-    .isLength({ min: 1, max: 30 }),
+    .isLength({ max: 30 }),
 
 
     
@@ -162,11 +162,10 @@ export const valdateResumeInputs = [
   body('languages.*.name')
     .optional()
     .isString()
-    .isLength({ min: 2, max: 25 }),
+    .isLength({ max: 25 }),
 
   body('languages.*.level')
     .optional()
     .isString()
-    .isIn(['basico', 'intermediario', 'avancado'])
     .withMessage('Level deve ser basico, intermediario ou avancado'),
 ];

@@ -64,10 +64,7 @@ const ResumeSchema = new mongoose.Schema(
     languages: [
       {
         name: { type: String },
-        level: {
-          type: String,
-          enum: ['basico', 'intermediario', 'avancado']
-        }
+        level: { type: String}
       }
     ]
 

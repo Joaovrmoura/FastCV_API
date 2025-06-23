@@ -12,10 +12,7 @@ import requiredRole from '../middlewares/roleRequired.js';
 router.use(requiredLogin)
 
 // get All resumes
-router.get('/resumes', 
-    requiredRole(['admin']), 
-    ResumeController.findAll
-)
+router.get('/resumes', ResumeController.findAll)
 
 // get one
 router.get('/resumes/:id', 

@@ -9,22 +9,22 @@ class UserController {
             console.log(id, req.userId, req.userRole);
             
             if(id !== req.userId && req.userRole !== 'admin'){
-                return res.status(400).json({ "sucess": false, "message": "Operação inválida" })
+                return res.status(400).json({ "success": false, "message": "Operação inválida" })
             }
 
             const user = await UserModel.findById(id)
 
             if(!user){
-                return res.status(402).json({ "sucess": false, "message": "Usuário não encontrado!" })
+                return res.status(402).json({ "success": false, "message": "Usuário não encontrado!" })
             }
             const {_id, email, role, createdAt, updatedAt} = user;
 
-            return res.status(201).json({"sucess": true, "data": {_id, email, role, createdAt, updatedAt} })
+            return res.status(201).json({"success": true, "data": {_id, email, role, createdAt, updatedAt} })
 
         } catch (error) {
             console.error(error);
             return res.status(500).json(
-                { "sucess": false, 
+                { "success": false, 
                     "message": "Algo deu errado ao carregar usuário" 
                 }
             );
@@ -36,16 +36,16 @@ class UserController {
             const allUsers = await UserModel.find({}, {password: 0, __v: 0})
 
             if(!allUsers){
-                return res.status(402).json({ "sucess": false, "message": "Usuário não encontrado!" })
+                return res.status(402).json({ "success": false, "message": "Usuário não encontrado!" })
             }
 
-            return res.status(200).json({"sucess": true, "data": allUsers})
+            return res.status(200).json({"success": true, "data": allUsers})
 
         } catch (error) {
             console.error(error);
             return res.status(500).json(
                 { 
-                    "sucess": false, 
+                    "success": false, 
                     "message": "Algo deu errado ao buscar usuários" 
                 }
             );
@@ -57,7 +57,7 @@ class UserController {
             const {id} = req.params;
 
             if(id.length <= 1 || req.userRole !== 'admin'){
-                return res.status(400).json({ "sucess": false, "message": "Operação inválida!" })
+                return res.status(400).json({ "success": false, "message": "Operação inválida!" })
             }
 
             const user = await UserModel.findByIdAndDelete(id)

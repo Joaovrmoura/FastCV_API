@@ -4,14 +4,12 @@ import jwt from 'jsonwebtoken';
 
 // middleware for login and control sensitive routes
 export default (req, res, next) => {
-    const  {authorization} = req.headers;
+    const token = req.cookies?.token;
 
-    if(!authorization) {
+    if(!token) {
         return res.status(401).json({"message": "Usuário não autorizado"})
     }
 
-    const [, token] = authorization.split(' ');
-    
     try {
         const data = jwt.verify(token, process.env.ACESS_TOKEN_SECRET)
         const {_id, email, role} = data;

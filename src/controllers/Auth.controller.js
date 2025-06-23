@@ -9,15 +9,15 @@ class AuthController {
         try {
             const { email, password } = req.body;
 
-            if(!email || !password){
-                return res.status(401).json({ "sucess": false, "message": "Dados incompletos" })
+            if (!email || !password) {
+                return res.status(401).json({ "success": false, "message": "Dados incompletos" })
             }
             console.log(email, password);
 
             const userExists = await UserModel.findOne({ "email": email.toLowerCase() });
 
             if (userExists) {
-                return res.status(400).json({ "sucess": false, "message": "Usuário já cadastrado!" })
+                return res.status(400).json({ "success": false, "message": "Usuário já cadastrado!" })
             }
 
             const hash_password = await bcryptjs.hash(password, 10);
@@ -37,13 +37,19 @@ class AuthController {
                     expiresIn: process.env.TOKEN_EXPIRATION
                 }
                 )
-
-                return res.status(201).json({ "sucess": true, "message": "Usuário cadastrado com sucesso!", token: token });
+                res.cookie('token', token, {
+                    path: '/',
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production",  
+                    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+                    maxAge: 24 * 60 * 60 * 1000
+                });
+             return res.status(201).json({ "success": true, "message": "Usuário cadastrado com sucesso!" });
             }
 
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ "sucess": false, "message": "Algo deu errado!" })
+            return res.status(500).json({ "success": false, "message": "Algo deu errado!" })
         }
     }
 
@@ -52,17 +58,17 @@ class AuthController {
             const { email, password } = req.body;
 
             if (!email || !password) {
-                return res.status(401).json({ "sucess": false, "message": "Dados incompletos" })
+                return res.status(401).json({ "success": false, "message": "Dados incompletos" })
             }
             const userExists = await UserModel.findOne({ email })
 
             if (!userExists) {
-                return res.status(402).json({ "sucess": false, "message": "Usuário não cadastrado!" })
+                return res.status(402).json({ "success": false, "message": "Usuário não cadastrado!" })
             }
             const comparePassword = await bcryptjs.compare(password, userExists.password)
 
             if (!comparePassword) {
-                return res.status(400).json({ "sucess": false, "message": "erro nas credenciais!" })
+                return res.status(400).json({ "success": false, "message": "erro nas credenciais!" })
             }
 
             const { _id, role } = userExists
@@ -74,23 +80,28 @@ class AuthController {
             }
 
 
-            const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET, {
-                expiresIn: process.env.TOKEN_EXPIRATION
-            }
-            )
+            const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET, 
+                { expiresIn: process.env.TOKEN_EXPIRATION })
 
+            res.cookie('token', token, {
+                path: '/',
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",  // on localhost are development
+                sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+                maxAge: 24 * 60 * 60 * 1000
+            });
+            
             return res.status(201).json(
                 {
-                    "sucess": true,
+                    "success": true,
                     "message": "Logado com sucesso",
-                    "data": user,
-                    "token": token
+                    "data": user
                 }
             )
 
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ "sucess": false, "message": "Algo deu errado!" });
+            return res.status(500).json({ "success": false, "message": "Algo deu errado!" });
         }
     }
 }

@@ -31,20 +31,29 @@ class AuthController {
             );
 
             if (createUser) {
-                const { _id, role } = createUser;
+                const userResponse = {
+                    _id: createUser._id.toString(),  // garante que o _id seja string
+                    email: createUser.email,
+                    role: createUser.role
+                };
 
-                const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET, {
+                const token = jwt.sign({ userResponse }, process.env.ACESS_TOKEN_SECRET, {
                     expiresIn: process.env.TOKEN_EXPIRATION
                 }
                 )
                 res.cookie('token', token, {
                     path: '/',
                     httpOnly: true,
-                    secure: process.env.NODE_ENV === "production",  
+                    secure: process.env.NODE_ENV === "production",
                     sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
                     maxAge: 24 * 60 * 60 * 1000
                 });
-             return res.status(201).json({ "success": true, "message": "Usuário cadastrado com sucesso!" });
+
+
+
+                console.log("createUser: ", userResponse);
+
+                return res.status(201).json({ "success": true, "message": "Usuário cadastrado com sucesso!", "data": userResponse });
             }
 
         } catch (error) {
@@ -80,7 +89,7 @@ class AuthController {
             }
 
 
-            const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET, 
+            const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET,
                 { expiresIn: process.env.TOKEN_EXPIRATION })
 
             res.cookie('token', token, {
@@ -90,7 +99,7 @@ class AuthController {
                 sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
                 maxAge: 24 * 60 * 60 * 1000
             });
-            
+
             return res.status(201).json(
                 {
                     "success": true,

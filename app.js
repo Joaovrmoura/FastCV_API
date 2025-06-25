@@ -7,7 +7,7 @@ import rateLimiter from './src/config/rateLimit.config.js';
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors(corsOptions));
 app.use(rateLimiter);
 app.use(cookieParser());

@@ -52,7 +52,7 @@ export const valdateResumeInputs = [
   body('personal_data.linkedin')
     .optional()
     .isString()
-    .isLength({max: 50})
+    .isLength({max: 100})
     .withMessage('Entrada inválida!'),
 
   body('objective')

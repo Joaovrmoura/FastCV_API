@@ -2,8 +2,7 @@ const allowedOrigins = [
   'http://localhost:3060',
   'http://localhost:3000',
   'http://localhost:5500',
-  'https://fast-cv-phi.vercel.app',
-  'https://seusite.vercel.app'
+  'https://fast-cv-phi.vercel.app'
 ];
 
 const corsOptions = {

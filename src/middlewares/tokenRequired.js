@@ -7,7 +7,7 @@ export default (req, res, next) => {
     const token = req.cookies?.token;
 
     if(!token) {
-        return res.status(401).json({"message": "Usuário não autorizado"})
+        return res.status(401).json({"message": "Usuário não autorizado [!TOKEN]"})
     }
 
     try {
@@ -18,7 +18,7 @@ export default (req, res, next) => {
         req.userId = _id;
         req.userEmail = email;
         req.userRole = role || "user";
- 
+        
         return next();
 
     } catch(error){

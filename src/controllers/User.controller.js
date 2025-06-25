@@ -4,9 +4,7 @@ class UserController {
 
     async findOne(req, res){
         try {
-
             const {id} = req.params;    
-            console.log(id, req.userId, req.userRole);
             
             if(id !== req.userId && req.userRole !== 'admin'){
                 return res.status(400).json({ "success": false, "message": "Operação inválida" })
@@ -84,7 +82,6 @@ class UserController {
             );
         }
     }
-    
 }
 
 export default new UserController()

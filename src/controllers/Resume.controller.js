@@ -10,13 +10,13 @@ class ResumeController {
             if (!userId ) {
                 return res.status(400).json({ "success": false, "message": "Operação inválida" })
             }  
-            const resumes = await ResumeModel.find({ user_id: userId }, '_id template_selected createdAt');
+            const resumes = await ResumeModel.find({ user_id: userId }, '_id user_id template_selected createdAt');
             
-            if (!resumes) {
+            if (!resumes || resumes.length === 0) {
                 return res.status(402).json({ "success": false, "message": "Nenhum currículo encontrado" })
             }
 
-            if(resumes[0]._id.toString() !== userId && userRole !== 'admin'){
+            if(resumes[0].user_id.toString() !== userId && userRole !== 'admin'){
                 return res.status(402).json({ "success": false, "message": "Currículo não acessível" })
             }
             
@@ -72,6 +72,7 @@ class ResumeController {
             }
             // if user logged is difirent than resume user_id reference the request is abort
             // req.userId = user with verified token
+            
             if (resume.user_id.toString() != req.userId) {
                 return res.status(402).json({ "success": false, "message": "Currículo não disponível" })
             }
@@ -124,9 +125,9 @@ class ResumeController {
             // Verify if  user has more 5 resumes
             const resumes = await ResumeModel.find({ user_id: userId });
 
-            if(resumes.length >= 5) {
+            if(resumes.length >= 3) {
                 return res.status(403).json({success: false,message: "Limite de currículos atingido. Exclua um currículo antes de criar outro."});
-        }
+            }
 
             const salveResume = await ResumeModel.create(data);
 

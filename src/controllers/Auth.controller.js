@@ -12,7 +12,6 @@ class AuthController {
             if (!email || !password) {
                 return res.status(401).json({ "success": false, "message": "Dados incompletos" })
             }
-            console.log(email, password);
 
             const userExists = await UserModel.findOne({ "email": email.toLowerCase() });
 
@@ -31,16 +30,18 @@ class AuthController {
             );
 
             if (createUser) {
-                const userResponse = {
-                    _id: createUser._id.toString(),  // garante que o _id seja string
-                    email: createUser.email,
-                    role: createUser.role
-                };
+                const token = jwt.sign(
+                    {
+                        _id: createUser._id.toString(),
+                        email: createUser.email, role: createUser.role
+                    }, 
+                    process.env.ACESS_TOKEN_SECRET,
+                    {
+                        expiresIn: process.env.TOKEN_EXPIRATION
+                    }
+                    
+                );
 
-                const token = jwt.sign({ userResponse }, process.env.ACESS_TOKEN_SECRET, {
-                    expiresIn: process.env.TOKEN_EXPIRATION
-                }
-                )
                 res.cookie('token', token, {
                     path: '/',
                     httpOnly: true,
@@ -49,11 +50,16 @@ class AuthController {
                     maxAge: 24 * 60 * 60 * 1000
                 });
 
-
-
-                console.log("createUser: ", userResponse);
-
-                return res.status(201).json({ "success": true, "message": "Usuário cadastrado com sucesso!", "data": userResponse });
+                return res.status(201).json(
+                    { 
+                        "success": true, "message": "Usuário cadastrado com sucesso!", 
+                        "data": { 
+                             _id: createUser._id.toString(),
+                             email: createUser.email, 
+                            role: createUser.role
+                        } 
+                    }
+                );
             }
 
         } catch (error) {
@@ -86,7 +92,7 @@ class AuthController {
                 _id: _id,
                 email: userExists.email,
                 role: role
-            }
+              }
 
 
             const token = jwt.sign({ _id, email, role }, process.env.ACESS_TOKEN_SECRET,

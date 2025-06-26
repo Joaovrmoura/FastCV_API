@@ -1,7 +1,4 @@
-📄 Documentação da API – Fast CV
-API RESTful para gerenciamento de currículos e usuários.
-Desenvolvida com Node.js, Express, MongoDB (via Mongoose), autenticação JWT com cookies HttpOnly, validação com express-validator, segurança com helmet e controle de acesso via middleware.
-
+<p align="center"> <a href="https://fast-cv-phi.vercel.app" target="_blank"> <b>📄 Documentação da API – ResumeBuilder</b><br/> API RESTful para gerenciamento de currículos e usuários.<br/> Desenvolvida com Node.js, Express, MongoDB (via Mongoose), autenticação JWT com cookies HttpOnly, validação com express-validator, segurança com helmet e controle de acesso via middleware. </p>
 🌐 URL Base da Produção
 arduino
 Copiar

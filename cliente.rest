@@ -268,3 +268,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODUzNzY0N
 #   "email": "joao123@gmail.com",
 #   "password": "joao123"
 # }
+
+
+###
+@vercel= https://resumebuilder-pnlh.onrender.com
+
+POST {{vercel}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "userTestew36@gmail.com",
+  "password": "Joao123123"
+}

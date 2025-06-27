@@ -9,18 +9,18 @@ import notFoundRoute from './src/middlewares/notFoundRoute.js';
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
-// Conectar DB
+// connect DB
 (async () => {
   await Connection.connect();
 })();
 
-// Rotas
+// routes
 app.use('/api', userRoute);
 app.use('/auth', authRoute);
 app.use('/api', resumeRoute);
 app.use(notFoundRoute);
 
-// Start servidor
+// Start server
 app.listen(PORT, () => {
   console.log(`SERVER ON http://localhost:${PORT}`);
 });

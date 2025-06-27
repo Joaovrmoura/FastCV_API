@@ -1,8 +1,12 @@
-<p align="center"> <a href="https://fast-cv-phi.vercel.app" target="_blank"> <b>📄 Documentação da API – ResumeBuilder</b><br/> API RESTful para gerenciamento de currículos e usuários.<br/> Desenvolvida com Node.js, Express, MongoDB (via Mongoose), autenticação JWT com cookies HttpOnly, validação com express-validator, segurança com helmet e controle de acesso via middleware. </p>
-🌐 URL Base da Produção
+<p align="center"> 
+  
+  <a href="https://fast-cv-phi.vercel.app" target="_blank"> <b>
+    📄 Documentação da API – ResumeBuilder</b><br/>
+    API RESTful para gerenciamento de currículos e usuários.<br/> 
+    Desenvolvida com Node.js, Express, MongoDB (via Mongoose), autenticação JWT com cookies HttpOnly,<br/> validação com express-validator, segurança com helmet e controle de acesso via middleware.<br/>
+</p>
+    🌐 URL Base da Produção
 arduino
-Copiar
-Editar
 https://fast-cv-phi.vercel.app
 
 🔒 Autenticação
@@ -20,29 +24,38 @@ rate-limit: proteção contra requisições excessivas
 A autenticação via JWT utiliza um cookie HttpOnly com as seguintes configurações:
 
 js
-Copiar
-Editar
+
 res.cookie('token', token, {
-  path: '/',
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-  maxAge: 24 * 60 * 60 * 1000
+
+    path: '/',
+  
+    httpOnly: true,
+   
+    secure: process.env.NODE_ENV === "production",
+  
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+  
+    maxAge: 24 * 60 * 60 * 1000
+  
 });
 
 
 
 📁 Estrutura do Projeto
-bash
-Copiar
-Editar
 📦 src
- ┣ 📂config       # configurações como conexão, CORS e rateLimit
- ┣ 📂controllers  # lógica de negócios (CRUD usuários e currículos)
- ┣ 📂models       # schemas do Mongoose (User, Resume)
- ┣ 📂routes       # rotas Express (auth, resume, user)
- ┣ 📂validators   # validadores express-validator para cada entidade
- ┣ 📂middlewares  # auth middleware, not found route handler
+
+     ┣ 📂config       # configurações como conexão, CORS e rateLimit
+ 
+     ┣ 📂controllers  # lógica de negócios (CRUD usuários e currículos)
+ 
+     ┣ 📂models       # schemas do Mongoose (User, Resume)
+ 
+     ┣ 📂routes       # rotas Express (auth, resume, user)
+ 
+    ┣ 📂validators   # validadores express-validator para cada entidade
+ 
+    ┣ 📂middlewares  # auth middleware, not found route handler
+ 
 📦 Endpoints
 
 🔐 Autenticação (/auth)
@@ -52,24 +65,28 @@ Cria um novo usuário.
 Body:
 
 json
-Copiar
-Editar
-{
-  "email": "userTeste6@gmail.com",
-  "password": "Joao123"
-}
+
+      {
+   
+          "email": "userTeste6@gmail.com",
+          "password": "Joao123"
+      
+      }
+  
 POST /auth/login
 Autentica o usuário e armazena o token JWT em um cookie HttpOnly.
 
 Body:
 
 json
-Copiar
-Editar
-{
-  "email": "userteste6@gmail.com",
-  "password": "Joao123"
-}
+
+    {
+
+        "email": "userteste6@gmail.com",
+        "password": "Joao123"
+      
+    }
+    
 👤 Usuários (/api/users)
 Requer autenticação via token (cookie HttpOnly).
 
@@ -93,32 +110,30 @@ Deleta um currículo específico.
 
 📘 Headers Necessários
 http
-Copiar
-Editar
-Content-Type: application/json
-credentials: 'include'  // para envio do cookie HttpOnly
+
+     Content-Type: application/json
+    credentials: 'include'  // para envio do cookie HttpOnly
+    
 ⚙️ Variáveis de Ambiente (.env)
 env
-Copiar
-Editar
-CONNECTSTRING=mongodb+srv://...
-PORT=3060
-ACESS_TOKEN_SECRET=...
-TOKEN_EXPIRATION=50m
-OPENROUTER_API_KEY=...
-NODE_ENV=development
+
+    CONNECTSTRING=mongodb+srv://...
+    PORT=3060
+    ACESS_TOKEN_SECRET=...
+    TOKEN_EXPIRATION=50m
+    OPENROUTER_API_KEY=...
+    NODE_ENV=development
+    
 🔐 Middleware
 auth.middleware.js: protege rotas com JWT
-
 notFoundRoute.js: captura rotas inexistentes
 
 📚 Exemplo de Requisição com Fetch
 javascript
-Copiar
-Editar
-fetch('/api/resumes', {
-  method: 'GET',
-  credentials: 'include'
-})
-.then(res => res.json())
-.then(data => console.log(data));
+
+    fetch('/api/resumes', {
+    method: 'GET',
+    credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
